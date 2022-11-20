@@ -1,0 +1,13 @@
+
+NOTES
+
+- Source Program -> (Compiler) -> ByteCode -> (Interpreted) -> VM/Emulator -> Machine Code
+- Learned about conditional preprocessing
+- int* pointer, var1 [defining a pointer that holds addresses of variables of type Int]
+  var1 = 10 
+  pointer = &var1 [var1 is of type Int and therefore, pointer stores it's address]
+- Going to have an array of instructions and each instruciton has an opcode (operation code)
+
+
+QUESTIONS
+
