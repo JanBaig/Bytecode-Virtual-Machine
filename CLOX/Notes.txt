@@ -7,7 +7,8 @@ NOTES
   var1 = 10 
   pointer = &var1 [var1 is of type Int and therefore, pointer stores it's address]
 - Going to have an array of instructions and each instruciton has an opcode (operation code)
-
+- Chunk = [opcode, opcode, opcode, ...]
+- Chunk is sequences of bytecode and contains an array of instructions
 
 QUESTIONS
 
