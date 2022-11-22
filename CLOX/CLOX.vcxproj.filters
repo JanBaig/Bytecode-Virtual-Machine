@@ -27,6 +27,9 @@
     <ClCompile Include="Debug\debug.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Value\value.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Debug\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Value\value.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

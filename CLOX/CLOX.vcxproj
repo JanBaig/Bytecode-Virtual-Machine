@@ -131,12 +131,14 @@
     <ClCompile Include="Debug\debug.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Memory\memory.c" />
+    <ClCompile Include="Value\value.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk\chunk.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="Debug\debug.h" />
     <ClInclude Include="Memory\memory.h" />
+    <ClInclude Include="Value\value.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Notes.txt" />

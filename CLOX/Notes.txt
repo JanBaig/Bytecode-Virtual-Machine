@@ -12,3 +12,7 @@ NOTES
 
 QUESTIONS
 
+- Why do we pass in pointers/references when we define/call functions?
+	- When we pass a pointer as an argument instead of a variable then the address of the variable is passed instead of the value. 
+	  So any change made by the function using the pointer is permanently made at the address of the passed variable. 
+	  This technique is known as call by reference in C.
