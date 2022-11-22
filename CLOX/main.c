@@ -1,6 +1,6 @@
 #include "common.h" 
 #include "Chunk/chunk.h"
-#include "Debug/debug.h" 
+#include "./Disassemmbler/disassemble.h" 
 
 int main(int  argc, const char* argv[]) {
 	Chunk chunk;

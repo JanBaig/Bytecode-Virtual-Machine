@@ -24,7 +24,7 @@
     <ClCompile Include="Memory\memory.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\debug.c">
+    <ClCompile Include="Disassemmbler\disassemble.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Value\value.c">
@@ -41,7 +41,7 @@
     <ClInclude Include="Memory\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Debug\debug.h">
+    <ClInclude Include="Disassemmbler\disassemble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Value\value.h">
