@@ -127,18 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chunk\chunk.c" />
-    <ClCompile Include="Disassemmbler\disassemble.c" />
+    <ClCompile Include="chunk\chunk.c" />
+    <ClCompile Include="disassemmbler\disassemble.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Memory\memory.c" />
-    <ClCompile Include="Value\value.c" />
+    <ClCompile Include="memory\memory.c" />
+    <ClCompile Include="value\value.c" />
+    <ClCompile Include="vm\vm.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chunk\chunk.h" />
+    <ClInclude Include="chunk\chunk.h" />
     <ClInclude Include="common.h" />
-    <ClInclude Include="Disassemmbler\disassemble.h" />
-    <ClInclude Include="Memory\memory.h" />
-    <ClInclude Include="Value\value.h" />
+    <ClInclude Include="disassemmbler\disassemble.h" />
+    <ClInclude Include="memory\memory.h" />
+    <ClInclude Include="value\value.h" />
+    <ClInclude Include="vm\vm.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Notes.txt" />

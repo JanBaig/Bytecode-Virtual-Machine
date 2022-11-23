@@ -1,7 +1,6 @@
 
 NOTES
 
-- Source Program -> (Compiler) -> ByteCode -> (Interpreted) -> VM/Emulator -> Machine Code
 - Learned about conditional preprocessing
 - int* pointer, var1 [defining a pointer that holds addresses of variables of type Int]
   var1 = 10 
@@ -9,6 +8,7 @@ NOTES
 - Going to have an array of instructions and each instruciton has an opcode (operation code)
 - Chunk = [opcode, opcode, opcode, ...]
 - Chunk is sequences of bytecode and contains an array of instructions
+- We often pass by reference to alter the value directly in memory (not locally to the function)
 
 QUESTIONS
 
@@ -16,3 +16,33 @@ QUESTIONS
 	- When we pass a pointer as an argument instead of a variable then the address of the variable is passed instead of the value. 
 	  So any change made by the function using the pointer is permanently made at the address of the passed variable. 
 	  This technique is known as call by reference in C.
+- Whats all the jazz about the offset calculation? Understand that.
+
+
+CHAPTER NOTES
+
+- CHAPTER 14
+	- Source Program -> (Compiler) -> ByteCode -> (Interpreted & Executed by) -> VM/Emulator
+	- There is both compiling (First) and interpretation (Second) in play
+	- JLOX was easy to implement and is portable. But it isn't the best choice because it is slow and memory inefficient.
+	- JLOX does not exhibit spacial locality effectively. Leads to lots of overhead. Should arrange data to take advantage of 
+	  CPU caching.
+	- Processing data is fast (CPU), retriving data is slower (RAM)
+	- Because of caching, the way you organize data directly impacts performance.
+	- Bytecode adds a bit of overhead, but we get portability in return 
+	- Interpretation happens in the VM
+	- Chunk = Sequences of ByteCode
+	- ByteCode = Series of Instructions (OPCode, Operands) [I1, I2, I3, ...]
+	- ByteCode1, ByteCode2, ByteCode3 = Chunk Type
+
+- CHAPTER 15 
+	- IP = Instruction Pointer that points to the next instruction
+	- vm.ip holds an address of the next intruction (pointing to it)
+	  * gets the value at that address
+	  increments the address 
+	- READ_CONSTANT: Since the current IP holds the OPcode for the instruction, we make another call
+					 to READ_BYTE and that returns the index of the constant and we later use that 
+					 index and get the value of the constant  
+	- Offset is from the start of the chunk->code
+
+CURRENTLY: Understand C pointers

@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "./disassemble.h"
-#include "../Value/value.h"
+#include "../value/value.h"
 
 void disassembleChunk(Chunk* chunk, const char* name) {
 	printf("== %s ==\n", name);
 	
-	for (int offset = 0; offset < chunk->count;) { // ERROR
+	for (int offset = 0; offset < chunk->count;) { 
 		offset = disassembleInstruction(chunk, offset);
 	}
 }
@@ -27,7 +27,7 @@ int disassembleInstruction(Chunk* chunk, int offset) {
 		case OP_RETURN:
 			return simpleInstruction("OP_RETURN", offset);
 		default:
-			printf("Unknown opcode %d\n", instruction);
+			printf("Unknown opcode %d\n", instruction); 
 			return offset + 1;
 
 	}
@@ -39,9 +39,9 @@ static int simpleInstruction(const char* name, int offset) {
 } 
 
 static int constantInstruction(const char* name, Chunk* chunk, int offset ) {
-	uint8_t constant = chunk->code[offset + 1]; // index 0 is the opcode and +1 is the operand
-	printf("%-16s %4d '", name, constant);
-	printValue(chunk->constants.values[constant]);
+	uint8_t constantIndex = chunk->code[offset + 1]; // index 0 is the opcode and +1 is the operand
+	printf("%-16s %4d '", name, constantIndex);
+	printValue(chunk->constants.values[constantIndex]);
 	printf("'\n");
 	return offset + 2;
 }

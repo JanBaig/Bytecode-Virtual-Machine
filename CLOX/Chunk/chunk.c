@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "../Chunk/chunk.h"
-#include "../Memory/memory.h"
+#include "../chunk/chunk.h"
+#include "../memory/memory.h"
 
 void initChunk(Chunk* chunk) {
 	// We have a chunk pointer that contains the address of a chunk instance
@@ -32,8 +32,12 @@ void freeChunk(Chunk* chunk) {
 }
 
 int addConstant(Chunk* chunk, Value value) {
+	// chunk->constants = ValueArray
+	// ValueArray->values, count
+	
 	writeValueArray(&chunk->constants, value);
-	return chunk->constants.count - 1; // 
+	return chunk->constants.count - 1; 
+	
 }
 
 

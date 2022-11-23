@@ -2,7 +2,7 @@
 #define clox_chunk_h
 
 #include "../common.h"
-#include "../Value/value.h"
+#include "../value/value.h"
 
 typedef enum {
 	OP_CONSTANT,

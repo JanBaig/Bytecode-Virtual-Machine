@@ -18,16 +18,19 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Chunk\chunk.c">
+    <ClCompile Include="chunk\chunk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Memory\memory.c">
+    <ClCompile Include="memory\memory.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Disassemmbler\disassemble.c">
+    <ClCompile Include="disassemmbler\disassemble.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Value\value.c">
+    <ClCompile Include="value\value.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vm\vm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,16 +38,19 @@
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chunk\chunk.h">
+    <ClInclude Include="chunk\chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Memory\memory.h">
+    <ClInclude Include="memory\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Disassemmbler\disassemble.h">
+    <ClInclude Include="disassemmbler\disassemble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Value\value.h">
+    <ClInclude Include="value\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vm\vm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
