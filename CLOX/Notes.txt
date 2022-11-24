@@ -43,6 +43,9 @@ CHAPTER NOTES
 	- READ_CONSTANT: Since the current IP holds the OPcode for the instruction, we make another call
 					 to READ_BYTE and that returns the index of the constant and we later use that 
 					 index and get the value of the constant  
-	- Offset is from the start of the chunk->code
-
-CURRENTLY: Understand C pointers
+					 For constants, the chunk->code stores the constant's index
+					 Which is why read_byte would return an index which we can later use to get the 
+					 value from the values array 
+	- Offset is from the start of the chunk->code  
+	- A static function in C has a scope that is limited to its object file.
+	- The stack acts like a shared workspace allows all operations to read from and write to.
