@@ -8,7 +8,7 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 	} 
 
 	void* result = realloc(pointer, newSize);
-	if (result == NULL) exit(1); // will be NULL when the array is empty
+	if (result == NULL) exit(1); // will be NULL when not enough memory to allocate
 	return result;
 }
 

@@ -36,6 +36,8 @@ int addConstant(Chunk* chunk, Value value) {
 	// ValueArray->values, count
 	
 	writeValueArray(&chunk->constants, value);
+	// -1 is required because count holds the # of values and is not 0-indexed
+	// which is what we need for indexing the ValueArray
 	return chunk->constants.count - 1; 
 	
 }

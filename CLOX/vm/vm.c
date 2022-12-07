@@ -6,12 +6,11 @@
 VM vm;
 
 static void resetStack() {
-	vm.stackTop = vm.stack;
+	vm.stackTop = vm.stack; // indicates that stack is now empty
 }
 
 void initVM() {
 	resetStack();
-
 } 
 
 void freeVM() {
@@ -49,7 +48,7 @@ InterpretResult interpret(Chunk* chunk) {
 		
 		#ifdef DEBUG_TRACE_EXECUTION
 		printf("		");
-		for (Value* slot = vm.stack; slot < vm.stackTop; slot++) {
+		for (Value* slot = vm.stack; slot < vm.stackTop; slot++) { // prints what is already present in the stack
 			printf("[ ");
 			printValue(*slot);
 			printf(" ]");
