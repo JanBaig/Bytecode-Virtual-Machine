@@ -2,6 +2,7 @@
 #include "../common.h"
 #include "vm.h"
 #include "../disassemmbler/disassemble.h"
+#include "../compiler/compiler.h"
 
 VM vm;
 
@@ -27,10 +28,9 @@ Value pop() {
 	return *vm.stackTop;
 }
 
-InterpretResult interpret(Chunk* chunk) {
-	vm.chunk = chunk;
-	vm.ip = vm.chunk->code;
-	return run();
+InterpretResult interpret(const char* source) {
+	compile(source); // produces bytecode
+	return INTERPRET_OK;
 } 
 
  static InterpretResult run() {

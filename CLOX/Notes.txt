@@ -12,6 +12,7 @@ NOTES
 - General execution structure: initVM() -> reset stack, initChunk() -> reset chunk attributes, [All operations], 
 							   interpret() -> executes chunk instructions, freeVM(), freeChunk() -> deallocates all the chunks array attributes 
 							   return 0
+- Document the meaning of all the exit codes
 
 QUESTIONS
 
@@ -53,3 +54,15 @@ CHAPTER NOTES
 	- Offset is from the start of the chunk->code  
 	- A static function in C has a scope that is limited to its object file.
 	- The stack acts like a shared workspace allows all operations to read from and write to.
+
+
+ROUGH
+- OP_CONSTANT, Index, OP_CONSTANT, Index, OP_ADD, OP_CONSTANT, Index, OP_DIVIDE, OP_NEGATE, OP_RETURN
+- vm->interpret->compile->scanner()
+- [Object something] -> 
+- Later in the compiler, we’ll convert that lexeme to a runtime value right 
+  when we are ready to store it in the chunk’s constant table. - HOW??
+
+
+
+
