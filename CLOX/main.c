@@ -22,7 +22,10 @@ static void repl() {
 
 static char* readFile(const char* path) {
 	// 'b' opens in binary mode and disables handling of newlines
-	FILE* file = fopen(path, "rb"); 
+	FILE* file;
+
+	fopen_s(&file, path, "rb");
+
 	if (file == NULL) {
 		fprintf(stderr, "Could not open file \"%s\".\n", path);
 		exit(74);
@@ -68,13 +71,13 @@ int main(int argc, const char* argv[]) {
 	initVM();
 	
 	if (argc == 1) {
-		repl();
+		repl(); 
 	}
 	else if (argc == 2) {
 		runFile(argv[1]);
 	} 
 	else {
-		fprintf(stderr, "Usage: clox [path]\n"); // not buffered so displayed immediatly
+		fprintf(stderr, "Usage: clox [path]\n"); // stderr not buffered so displayed immediatly
 		exit(64);
 	}
 

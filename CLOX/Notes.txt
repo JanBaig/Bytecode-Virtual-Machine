@@ -59,9 +59,9 @@ CHAPTER NOTES
 ROUGH
 - OP_CONSTANT, Index, OP_CONSTANT, Index, OP_ADD, OP_CONSTANT, Index, OP_DIVIDE, OP_NEGATE, OP_RETURN
 - vm->interpret->compile->scanner()
-- [Object something] -> 
+- [Object something] in jlox
 - Later in the compiler, we’ll convert that lexeme to a runtime value right 
-  when we are ready to store it in the chunk’s constant table. - HOW??
+  when we are ready to store it in the chunk’s constant table.
 
 
 
