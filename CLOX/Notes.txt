@@ -63,6 +63,9 @@ ROUGH
 - Later in the compiler, we’ll convert that lexeme to a runtime value right 
   when we are ready to store it in the chunk’s constant table.
 
+Make use of global variables so that we don't have to pass the state around from function to function in the compiler
+- Why do we even need to know the previous token for error reporting? 
+  Is it because the current token is the TOKEN_ERROR itself? Aha, yes, that is the case indeed. 
 
-
+- repl, interpret(source), compile(source, chunk)
 

@@ -29,8 +29,23 @@ Value pop() {
 }
 
 InterpretResult interpret(const char* source) {
-	compile(source); // produces bytecode
-	return INTERPRET_OK;
+	Chunk chunk;
+	initChunk(&chunk);
+
+	// Chunk does not compile into bytecode without errors
+	if (!compile(source, &chunk)) {
+		freeChunk(&chunk);
+		return INTERPRET_COMPILE_ERROR;
+	} 
+
+	// If no compilation error, we start the interpretation process
+	vm.chunk = &chunk;
+	vm.ip = vm.chunk->code;
+
+	InterpretResult result = run();
+
+	freeChunk(&chunk);
+	return result;
 } 
 
  static InterpretResult run() {
@@ -81,7 +96,6 @@ InterpretResult interpret(const char* source) {
 	#undef READ_BYTE
 	#undef READ_CONSTANT
 	#undef BINARY_OP
-
 } 
 
 
