@@ -32,7 +32,7 @@ InterpretResult interpret(const char* source) {
 	Chunk chunk;
 	initChunk(&chunk);
 
-	// Chunk does not compile into bytecode without errors
+	// If chunk does not compile into bytecode without errors
 	if (!compile(source, &chunk)) {
 		freeChunk(&chunk);
 		return INTERPRET_COMPILE_ERROR;
