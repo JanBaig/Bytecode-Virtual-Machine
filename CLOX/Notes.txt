@@ -13,6 +13,7 @@ NOTES
 							   interpret() -> executes chunk instructions, freeVM(), freeChunk() -> deallocates all the chunks array attributes 
 							   return 0
 - Document the meaning of all the exit codes
+- Notes on Pratt Parsing are in the project file 'TDOP Parsing'
 
 CHAPTER NOTES
 
@@ -50,18 +51,19 @@ CHAPTER NOTES
 	- Make use of global variables so that we don't have to pass the state around from function to function in the compiler
 	- Why do we even need to know the previous token for error reporting? 
 	  Is it because the current token is the TOKEN_ERROR itself? Aha, yes, that is the case indeed. 
-	- (?) Since the OP_CONSTANT instruction uses a single byte for the index operand, we can store and load 
+	- Since the OP_CONSTANT instruction uses a single byte for the index operand, we can store and load 
 	  only up to 256 constants in a chunk.
-
-			What does it mean that there is only a limit of 256? I know 2^8=256 but 
-			it does not make much sense... Does it mean to say that the value of the constant can 
-			only be uptil the value of 256? Since the value needs to be a single byte long as the 
-			our code array in the chunk can only hold instructions/constantIndexes that are 1 byte 
-			long. So the 256 relates more to the max size than the quantity. Clarify this.
-
-			Or maybe this is a limit we just made for ourselves and not based on the limits 
-			of the chunk array size? 
+			The reason for this is because the OP_CONSTANT instruction only uses a SINGLE BYTE (8 Bits) to store the index of the 
+			values in the constnat ValueArray. Since it uses a single byte to store the index, that means that at most we can have 256 constant values stored (2^8)
+			else we go over one byte. 
 
 	- Pointer to functions: void(*)(int)
 	  Essentially, the above is a pointer to a function that takes an integer as
-	  an argument and returns nothing. It is also an anonymous
+	  an argument and returns nothing (void). It is also anonymous (*)
+
+IDEAS
+	- Add support for a pretty printer that prints out [] for highlightening the order of precendence for subexpressions
+	  Basically the [] indicate which subexpression is to be evaluated first 
+
+CURRENT
+	- Re-trace an expression and observe how pratt parsing is at play. Read the last Pratt chapter from the book

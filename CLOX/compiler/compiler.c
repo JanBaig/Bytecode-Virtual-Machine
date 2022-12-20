@@ -7,7 +7,6 @@
 
 #ifdef DEBUG_PRINT_CODE
 #include "../disassemmbler/disassemble.h"
-
 #endif
 
 typedef struct {
@@ -121,7 +120,7 @@ static uint8_t makeConstant(Value value) {
 }
 
 static void emitConstant(Value value) {
-	// Adds Instruction + Index to the code array in the chunk
+	// Adds Instruction + Index (Byte sized) to the code array in the chunk
 	// Floating point value is added to the constant table
 	emitBytes(OP_CONSTANT, makeConstant(value));
 }
@@ -164,8 +163,8 @@ static void grouping() {
 	consume(TOKEN_RIGHT_PAREN, "Expect ')' after expression");
 }
 
-static void number() {
-	// Why are we using the previous token?
+static void number() { 
+	// string -> double conversion
 	double value = strtod(parser.previous.start, NULL);
 	emitConstant(value);
 }
@@ -242,8 +241,6 @@ static void parsePrecedence(Precedence precedence) {
 		ParseFn infixRule = getRule(parser.previous.type)->infix;
 		infixRule();
 	} 
-
-
 }
 
 static ParseRule* getRule(TokenType type) {
