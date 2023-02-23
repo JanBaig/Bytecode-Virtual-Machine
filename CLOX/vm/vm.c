@@ -98,10 +98,3 @@ InterpretResult interpret(const char* source) {
 	#undef BINARY_OP
 } 
 
-
-
-
-
-
-
-
