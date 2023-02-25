@@ -29,5 +29,3 @@ int addConstant(Chunk* chunk, Value value);
 
 #endif
 
-// code contains address of a variable that is a dynamic array and contains byte sized ints
-

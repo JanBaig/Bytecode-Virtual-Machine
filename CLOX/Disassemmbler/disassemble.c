@@ -49,18 +49,10 @@ static int simpleInstruction(const char* name, int offset) {
 } 
 
 static int constantInstruction(const char* name, Chunk* chunk, int offset ) {
-	uint8_t constantIndex = chunk->code[offset + 1]; // index 0 is the opcode and +1 is the operand
+	uint8_t constantIndex = chunk->code[offset + 1]; // index 0 is the opcode and +1 is the operand (which is an index)
 	printf("%-16s %4d '", name, constantIndex);
 	printValue(chunk->constants.values[constantIndex]);
 	printf("'\n");
 	return offset + 2;
 }
-
-
-
-
-
-
-
-
 

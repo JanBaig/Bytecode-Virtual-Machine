@@ -67,6 +67,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Notes.txt" />
+    <Text Include="notes.txt" />
   </ItemGroup>
 </Project>

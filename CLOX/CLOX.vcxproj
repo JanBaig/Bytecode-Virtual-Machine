@@ -147,7 +147,7 @@
     <ClInclude Include="vm\vm.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Notes.txt" />
+    <Text Include="notes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

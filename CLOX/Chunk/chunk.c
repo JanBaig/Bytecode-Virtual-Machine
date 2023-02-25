@@ -37,14 +37,8 @@ int addConstant(Chunk* chunk, Value value) {
 	
 	writeValueArray(&chunk->constants, value);
 	// -1 is required because count holds the # of values and is not 0-indexed
-	// which is what we need for indexing the ValueArray
+	// which is what we need for indexing the ValueArray (used in our bytecode instruction's operand)
 	return chunk->constants.count - 1; 
 	
 }
-
-
-
-
-
-
 

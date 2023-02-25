@@ -67,3 +67,8 @@ IDEAS
 
 CURRENT
 	- Re-trace an expression and observe how pratt parsing is at play. Read the last Pratt chapter from the book
+
+--------------------
+uint8_t is the size of the opcode (Our bytecode)
+In other words: an index is absolute, an offset is relative (to some other position).
+

@@ -82,7 +82,7 @@ int main(int argc, const char* argv[]) {
 	}
 
 	// Implement this logic
-	freeVM();
+	freeVM(); 
 
 	return 0;
 }  
