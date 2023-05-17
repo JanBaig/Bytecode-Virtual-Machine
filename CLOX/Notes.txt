@@ -6,10 +6,10 @@ CHAPTER NOTES
 	- There is both compiling (First) and interpretation (Second) in play
 	- JLOX was easy to implement and is portable. But it isn't the best choice because it is slow and memory inefficient.
 	- JLOX does not exhibit spacial locality effectively. Leads to lots of overhead. Should arrange data to take advantage of 
-	  CPU caching.
+	  caching.
 	- Processing data is fast (CPU), retriving data is slower (RAM)
 	- Because of caching, the way you organize data directly impacts performance.
-	- Bytecode adds a bit of overhead, but we get portability in return 
+	- Bytecode adds a little bit of overhead, but we get portability and speed in return 
 	- Interpretation happens in the VM
 	- Chunk = Sequences of ByteCode
 	- ByteCode = Series of Instructions (OPCode, Operands) [I1, I2, I3, ...]
@@ -52,5 +52,43 @@ IDEAS
 
 CURRENT
 	- Re-trace an expression and observe how pratt parsing is at play. Read the last Pratt chapter from the book
-	- Debug trace the endire system so far, the scanner, compiler, VM, disassembler etc
+	- Debug trace the entire system so far, the scanner, compiler, VM, disassembler etc
 
+--------------------------------------------
+
+Reviewing Notes 
+Tracing the execution here 
+
+Main 
+-> VM 
+	-> Interpret()	// init a chunk, start the compilation process and store the compiled bytecode into the chunk along with its constants
+		->  Compile()  
+			-> init scanner 
+			-> recursion with pratt parsing  
+
+Sequence:
+1. compilation (pratt parsing)
+2. Scanning 
+3. Debugging Information
+4. Interpretation 
+
+Logic 
+
+2 + 7 * 14
+(2 + 7) * 14 ["Is the + of great precedance than the upcomming *?"]
+yes
+2 + (7 * 14) ["Is there anything left?"]
+no 
+evaluate
+Answer = (2 + (7 * 14))
+
+2 + 3
+(2)(+)3 
+currently stopped at the '+' and calls the mainParse functionns on the 3
+after the parsing is done from the 3 onwards, execution is returned to the binary function 
+binary function now has both of its arguments fully evaluated (bytecodes emmited)
+now it can push its own OP_ADD bytecode 
+
+- Arg1Res
+- Arg2Res
+- OP_ADD

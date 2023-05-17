@@ -74,8 +74,8 @@ static void errorAtCurrent(const char* message) {
 }
 
 static void advance() {
-	// CLOX's scanner includes an error token and leaves it up to the parser to handle 
-	// The parser asks the scanner repetitively for the next token in the loop
+	// CLOX's scanner leaves an error token (if error in source) and leaves it up to the parser to handle it
+	// The parser asks the scanner repeatedly for the next token in the loop
 
 	parser.previous = parser.current; 
 
@@ -116,12 +116,12 @@ static uint8_t makeConstant(Value value) {
 		return 0;
 	} 
 
-	return (uint8_t)constantIndex;
+	return (uint8_t)constantIndex; // index returned takes up 1 byte in space - "bytecode"
 }
 
 static void emitConstant(Value value) {
 	// Adds Instruction + Index (Byte sized) to the code array in the chunk
-	// Floating point value is added to the constant table
+	// Floating point value is added to the chunk's constants attribute
 	emitBytes(OP_CONSTANT, makeConstant(value));
 }
 
@@ -141,8 +141,7 @@ static ParseRule* getRule(TokenType type);
 static void parsePrecedence(Precedence precedence);
 
 static void binary() {
-	// Infix operator has already been consumed - 
-	// which is why we use the previous token
+	// Infix operator has already been consumed - which is why we use the previous token
 	TokenType operatorType = parser.previous.type;
 	ParseRule* rule = getRule(operatorType);
 	parsePrecedence((Precedence)(rule->precedence + 1));
@@ -234,7 +233,7 @@ static void parsePrecedence(Precedence precedence) {
 		return;
 	}
 
-	prefixRule(); 
+	prefixRule(); // parse in accordance to the token type
 
 	while (precedence <= getRule(parser.current.type)->precedence) {
 		advance();
@@ -261,7 +260,7 @@ bool compile(const char* source, Chunk* chunk) {
 	parser.hadError = false;
 	parser.panicMode = false;
 
-	advance(); // only called for a single token. If contains an error, keeps on looping until only valid tokens are found
+	advance(); // Accounts for errors at the start - If contains an error, keeps on looping until only valid tokens are found
 	expression();
 	consume(TOKEN_EOF, "Expect end of expression.");
 	endCompiler(); // emits the OP_RETURN bytecode instruction

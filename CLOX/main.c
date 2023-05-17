@@ -7,11 +7,12 @@
 #include "./vm/vm.h"
 
 static void repl() {
+
 	char line[1024]; // arrays decay into pointers by the compiler
 	for (;;) {
 		printf("> "); 
 
-		if (!fgets(line, sizeof(line), stdin)) {
+		if (!fgets(line, sizeof(line), stdin)) { // null pointer is returned if nothing is read 
 			printf("\n");
 			break;
 		}
@@ -63,7 +64,6 @@ static void runFile(const char* path) {
 
 	if (result == INTERPRET_COMPILE_ERROR) exit(65);
 	if (result == INTERPRET_RUNTIME_ERROR) exit(70);
-
 }
 
 int main(int argc, const char* argv[]) {
