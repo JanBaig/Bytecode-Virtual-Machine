@@ -8,21 +8,7 @@ Main
 			-> init scanner 
 			-> recursion with pratt parsing  
 
-Sequence:
-1. compilation (pratt parsing)
-2. Scanning 
-3. Debugging Information
-4. Interpretation 
-
 LOGIC
-
-2 + 7 * 14
-(2 + 7) * 14 ["Is the + of great precedance than the upcomming *?"]
-yes
-2 + (7 * 14) ["Is there anything left?"]
-no 
-evaluate
-Answer = (2 + (7 * 14))
 
 2 + 3
 (2)(+)3 

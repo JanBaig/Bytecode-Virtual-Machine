@@ -17,15 +17,19 @@ typedef enum {
 typedef struct { 
 	int count;
 	int capacity;
-	ValueArray constants; // Holds integer values? Contains capacity, count, values (an array) 
-	uint8_t* code; // the bytecode 
-	int* lines;
+	ValueArray constants; 
+	uint8_t* code; 
+	
+	int** lines;
+	int linesCapacity;
+	int linesCount;
 } Chunk; 
 
 void initChunk(Chunk* chunk);
 void writeChunk(Chunk* chunk, uint8_t byte, int line);
 void freeChunk(Chunk* chunk);
 int addConstant(Chunk* chunk, Value value);
+int getLine(Chunk* chunk, int byteIndex);
 
 #endif
 
