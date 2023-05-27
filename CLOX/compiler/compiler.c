@@ -4,6 +4,7 @@
 #include "../common.h"
 #include "compiler.h"
 #include "../scanner/scanner.h"
+#define THREE_BYTE_MAX 16777216
 
 #ifdef DEBUG_PRINT_CODE
 #include "../disassemmbler/disassemble.h"
@@ -111,18 +112,34 @@ static void emitReturn() {
 
 static uint8_t makeConstant(Value value) {
 	int constantIndex = addConstant(currentChunk(), value);
-	if (constantIndex > UINT8_MAX) {
-		error("Too many constants in one chunk.");
-		return 0;
-	} 
-
 	return (uint8_t)constantIndex; // index returned takes up 1 byte in space - "bytecode"
+}
+
+static void writeConstant(Chunk* chunk, Value value, int line) {
+	uint32_t constantIndex = (uint32_t)addConstant(chunk, value);
+	if (constantIndex > THREE_BYTE_MAX) {
+		error("Too many constants in one chunk. Maximum allowed are 2^24.");
+		return 0;
+	}
+
+	uint8_t byteArr[3];
+	uint8_t* x = (uint8_t*)&constantIndex;
+	byteArr[0] = x[0]; // LSB
+	byteArr[1] = x[1];
+	byteArr[2] = x[2]; // MSB
+
+	emitBytes(OP_CONSTANT_LONG, byteArr[0]);
+	emitBytes(byteArr[1], byteArr[2]);
 }
 
 static void emitConstant(Value value) {
 	// Adds Instruction + Index (Byte sized) to the code array in the chunk
 	// Floating point value is added to the chunk's constants attribute
-	emitBytes(OP_CONSTANT, makeConstant(value));
+	
+	if (currentChunk()->constants.count > 2) { // UINT8_MAX
+		writeConstant(currentChunk(), value, parser.previous.line);
+	}
+	else { emitBytes(OP_CONSTANT, makeConstant(value)); }
 }
 
 static void endCompiler() {

@@ -48,11 +48,6 @@ void freeChunk(Chunk* chunk) {
 	FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
 	freeValueArray(&chunk->constants);
 
-	// Print the 2D array First
-	for (int i = 0; i < chunk->linesCount; i++) {
-		printf("(Count: %d, Line %d)\n", chunk->lines[i][0], chunk->lines[i][1]);
-	}
-
 	// Free 2D Line Array - Print the values for testing first (?)
 	for (int i = 0; i < chunk->linesCount; i++) { FREE_ARRAY(int, chunk->lines[i], 2); }
 	FREE_ARRAY(int*, chunk->lines, chunk->linesCapacity);

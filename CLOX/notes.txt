@@ -19,4 +19,13 @@ now it can push its own OP_ADD bytecode
 
 - Arg1Res
 - Arg2Res
-- OP_ADD
+- OP_ADD 
+
+https://github.com/munificent/craftinginterpreters/issues/514 
+
+// Print the 2D array First
+	for (int i = 0; i < chunk->linesCount; i++) {
+		printf("(Count: %d, Line %d)\n", chunk->lines[i][0], chunk->lines[i][1]);
+}
+
+For challenge #1, mention that its called run-length encoding to be percise 

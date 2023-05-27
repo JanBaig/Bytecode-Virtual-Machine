@@ -70,6 +70,14 @@ InterpretResult interpret(const char* source) {
 		} 
 		printf("\n");
 
+		int offset = (int)(vm.ip - vm.chunk->code);
+		int prevInstruc = vm.chunk->code[offset - 2];
+		if (prevInstruc == OP_CONSTANT_LONG) {
+			// Since the OP_CONSTANT_LONG has a 3 byte opperand 
+			// We've already read one of the opperands so we skip the 2 to get to the next instruction
+			vm.ip += 2; 
+		}
+
 		disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code)); // getting the offset
 		#endif
 
@@ -77,6 +85,11 @@ InterpretResult interpret(const char* source) {
 		switch (instruction = READ_BYTE()) {
 			case OP_CONSTANT: {
 				Value constant = READ_CONSTANT(); 
+				push(constant);
+				break;
+			} 
+			case OP_CONSTANT_LONG: {
+				Value constant = READ_CONSTANT();
 				push(constant);
 				break;
 			}
