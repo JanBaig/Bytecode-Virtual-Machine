@@ -12,3 +12,14 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 	return result;
 }
 
+/*
+How do mallc() & free() work internally?
+
+- What C compiler is currently set to run my code here? 
+- How can I change the compilers here?
+- How many C compilers are there? Which ones are the best? 
+- Where are there open source implementations? 
+- Proceeed to study malloc.
+
+
+*/

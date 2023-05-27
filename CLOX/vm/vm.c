@@ -5,6 +5,7 @@
 #include "../compiler/compiler.h"
 
 VM vm;
+bool foundConstantLong = false;
 
 static void resetStack() {
 	vm.stackTop = vm.stack; // indicates that stack is now empty
@@ -72,10 +73,11 @@ InterpretResult interpret(const char* source) {
 
 		int offset = (int)(vm.ip - vm.chunk->code);
 		int prevInstruc = vm.chunk->code[offset - 2];
-		if (prevInstruc == OP_CONSTANT_LONG) {
+		if (prevInstruc == OP_CONSTANT_LONG && foundConstantLong) {
 			// Since the OP_CONSTANT_LONG has a 3 byte opperand 
 			// We've already read one of the opperands so we skip the 2 to get to the next instruction
 			vm.ip += 2; 
+			foundConstantLong = false;
 		}
 
 		disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code)); // getting the offset
@@ -89,6 +91,7 @@ InterpretResult interpret(const char* source) {
 				break;
 			} 
 			case OP_CONSTANT_LONG: {
+				foundConstantLong = true;
 				Value constant = READ_CONSTANT();
 				push(constant);
 				break;
