@@ -8,9 +8,11 @@
 
 typedef struct {
 	Chunk* chunk;
-	uint8_t* ip; 
-	Value stack[STACK_MAX];
-	Value* stackTop; // points to where the next value should go
+	uint8_t* ip; // points to the next instruction, not the one currently being handled
+	Value* stack;
+	int stackCapacity;
+	int stackCount; // points to where the NEXT value should go
+	
 } VM;
 
 typedef enum {
@@ -25,4 +27,4 @@ InterpretResult interpret(const char* source);
 void push(Value value);
 Value pop();
 
-#endif
+#endif 

@@ -77,7 +77,7 @@ int main(int argc, const char* argv[]) {
 		runFile(argv[1]);
 	} 
 	else {
-		fprintf(stderr, "Usage: clox [path]\n"); // stderr not buffered so displayed immediatly
+		fprintf(stderr, "Usage: clox [path]\n"); // stderr not buffered so displayed immediately
 		exit(64);
 	}
 

@@ -136,7 +136,7 @@ static void emitConstant(Value value) {
 	// Adds Instruction + Index (Byte sized) to the code array in the chunk
 	// Floating point value is added to the chunk's constants attribute
 	
-	if (currentChunk()->constants.count > 2) { // UINT8_MAX
+	if (currentChunk()->constants.count > UINT8_MAX) {
 		writeConstant(currentChunk(), value, parser.previous.line);
 	}
 	else { emitBytes(OP_CONSTANT, makeConstant(value)); }
