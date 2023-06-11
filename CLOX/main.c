@@ -54,7 +54,6 @@ static char* readFile(const char* path) {
 
 	fclose(file);
 	return buffer;
-
 }
 
 static void runFile(const char* path) {

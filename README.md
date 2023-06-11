@@ -4,7 +4,7 @@ A Bytecode Virtual Machine (VM) written in `C`. To avoid the overhead of travers
 
 ## Challenges Completed
 - [x] Chapter 14 - Chunks of Byetcode 
-- [ ] Chapter 15 - A Virtual Machine 
+- [x] Chapter 15 - A Virtual Machine 
 - [ ] Chapter 16 - Scanning on Demand
 
 All solutions are presented in detail and can be found in the `./challenges` folder

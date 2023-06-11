@@ -34,7 +34,7 @@ void push(Value value) {
 	vm.stack[vm.stackCount] = value;
 	vm.stackCount++;
 } 
-
+ 
 Value pop() {
 	vm.stackCount--;
 	return vm.stack[vm.stackCount];

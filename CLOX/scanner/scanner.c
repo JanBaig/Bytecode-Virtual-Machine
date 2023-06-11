@@ -4,13 +4,6 @@
 #include "../common.h"
 #include "scanner.h"
 
-typedef struct {
-	const char* start;
-	const char* current;
-	int line;
-
-} Scanner;
-
 Scanner scanner; 
 
 void initScanner(const char* source) {
@@ -158,6 +151,7 @@ static Token number() {
 		// Consume the '.'
 		advance(); 
 
+		// Consume the remaining numbers after the decimal
 		while (isDigit(peek())) advance();
 	} 
 
