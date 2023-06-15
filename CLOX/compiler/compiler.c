@@ -31,6 +31,7 @@ typedef enum {
 	PREC_PRIMARY
 } Precedence;
 
+// A Function Pointer - holds address of function
 typedef void (*ParseFn)();
 
 typedef struct { 
@@ -149,7 +150,6 @@ static void endCompiler() {
 	if (!parser.hadError) {
 		disassembleChunk(currentChunk(), "code");
 	} 
-
 	#endif
 }
 
@@ -188,7 +188,7 @@ static void number() {
 static void unary() {
 	TokenType operatorType = parser.previous.type;
 
-	// compile the operand
+	// compile the operand and other operators of higher precedence only
 	parsePrecedence(PREC_UNARY);
 
 	// Emit the operator Instruction
@@ -277,7 +277,7 @@ bool compile(const char* source, Chunk* chunk) {
 	parser.hadError = false;
 	parser.panicMode = false;
 
-	advance(); // Accounts for errors at the start - If contains an error, keeps on looping until only valid tokens are found
+	advance(); // Accounts for errors at the start - If contains an error, keeps on looping until a valid token is found
 	expression();
 	consume(TOKEN_EOF, "Expect end of expression.");
 	endCompiler(); // emits the OP_RETURN bytecode instruction

@@ -4,6 +4,7 @@
 #include "../disassemmbler/disassemble.h"
 #include "../compiler/compiler.h"
 #include "../memory/memory.h"
+#include <time.h>
 
 VM vm;
 bool foundConstantLong = false;
@@ -44,13 +45,13 @@ InterpretResult interpret(const char* source) {
 	Chunk chunk;
 	initChunk(&chunk);
 
-	// If chunk does not compile into bytecode without errors
+	// If chunk does not compile into bytecode without errors (SCANNER + COMPILER)
 	if (!compile(source, &chunk)) {
 		freeChunk(&chunk);
 		return INTERPRET_COMPILE_ERROR;
 	} 
 
-	// If no compilation error, we start the interpretation process
+	// If no compilation error, we start the interpretation process (VM)
 	vm.chunk = &chunk;
 	vm.ip = vm.chunk->code;
 
@@ -59,6 +60,21 @@ InterpretResult interpret(const char* source) {
 	freeChunk(&chunk);
 	return result;
 } 
+
+static void testStack(bool boolean) {
+	
+	struct timespec begin;
+	timespec_get(&begin, TIME_UTC);
+
+	if (boolean) { push(-pop()); } 
+	else { vm.stack[vm.stackCount - 1] = -vm.stack[vm.stackCount - 1]; }
+
+	struct timespec end;
+	timespec_get(&end, TIME_UTC);
+
+	double time_spent = (end.tv_nsec - begin.tv_nsec);
+	printf("RESULT: %f\n", time_spent);
+}
 
 static InterpretResult run() {
 
@@ -111,7 +127,10 @@ static InterpretResult run() {
 			case OP_SUBTRACT: BINARY_OP(-); break;
 			case OP_MULTIPLY: BINARY_OP(*); break;
 			case OP_DIVIDE: BINARY_OP(/ ); break;
-			case OP_NEGATE: push(-pop()); break;
+			case OP_NEGATE: {
+				vm.stack[vm.stackCount - 1] = -vm.stack[vm.stackCount - 1];
+				break;
+			}
 			case OP_RETURN: {
 				printValue(pop());
 				printf("\n");
