@@ -1,5 +1,8 @@
 #include <stdlib.h>
+
 #include "memory.h"
+#include "../objects/objects.h"
+#include "../vm/vm.h"
 
 void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 	if (newSize == 0) {
@@ -12,14 +15,23 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 	return result;
 }
 
-/*
-How do mallc() & free() work internally?
+static void freeObj(Obj* object) {
+	switch (object->type) {
+		case OBJ_STRING: {
+			ObjString* string = (ObjString*)object;
+			FREE_ARRAY(char, string->chars, string->length + 1);
+			FREE(ObjString, object);
+			break;
+		}
+	}
+}
 
-- What C compiler is currently set to run my code here? 
-- How can I change the compilers here?
-- How many C compilers are there? Which ones are the best? 
-- Where are there open source implementations? 
-- Proceeed to study malloc.
+void freeObjects() {
+	Obj* object = vm.objects;
+	while (object != NULL) {
+		Obj* next = object->next;
+		freeObj(object);
+		object = next;
+	}
+}
 
-
-*/

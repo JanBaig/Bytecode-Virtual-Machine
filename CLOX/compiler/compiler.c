@@ -4,6 +4,8 @@
 #include "../common.h"
 #include "compiler.h"
 #include "../scanner/scanner.h"
+#include "../objects/objects.h"
+
 #define THREE_BYTE_MAX 16777216
 
 #ifdef DEBUG_PRINT_CODE

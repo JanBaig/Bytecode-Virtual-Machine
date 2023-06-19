@@ -136,6 +136,10 @@
     <ClCompile Include="disassemmbler\disassemble.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="memory\memory.c" />
+    <ClCompile Include="objects\objects.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="scanner\scanner.c" />
     <ClCompile Include="value\value.c" />
     <ClCompile Include="vm\vm.c" />
@@ -146,7 +150,7 @@
     <ClInclude Include="compiler\compiler.h" />
     <ClInclude Include="disassemmbler\disassemble.h" />
     <ClInclude Include="memory\memory.h" />
-    <ClInclude Include="object\object.h" />
+    <ClInclude Include="objects\objects.h" />
     <ClInclude Include="scanner\scanner.h" />
     <ClInclude Include="value\value.h" />
     <ClInclude Include="vm\vm.h" />
