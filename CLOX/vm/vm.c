@@ -125,7 +125,7 @@ static InterpretResult run() {
 	#define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()]) 
 	#define BINARY_OP(valueType, op) \
 			do { \
-				if (!IS_NUMBER(peek(0)) | !IS_NUMBER(peek(1))) { \
+				if (!IS_NUMBER(peek(0)) || !IS_NUMBER(peek(1))) { \
 					runtimeError("Operands must be numbers."); \
 					return INTERPRET_RUNTIME_ERROR; \
 				} \
@@ -191,7 +191,8 @@ static InterpretResult run() {
 				} else {
 					runtimeError("Operands must be two numbers or two strings.");
 					return INTERPRET_RUNTIME_ERROR;
-				}
+				} 
+				break;
 			}
 			case OP_SUBTRACT:	BINARY_OP(NUMBER_VAL, -); break;
 			case OP_MULTIPLY:	BINARY_OP(NUMBER_VAL, *); break;
